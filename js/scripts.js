@@ -300,3 +300,32 @@ function allVid(recherche){
         });
     }
 }
+
+function getCommentThread(id) {
+// Champs a recuperer, dans des tableaux
+    var comments[];
+    var commentsId[];
+    var commentAuthor[];
+    var likes[];
+    var publicationDate[];
+    var updateDate[];
+
+    self.getVid = function(recherche, maxResults, pageToken, id){
+                return $.ajax({
+                async: true,
+                type: 'GET',
+                url: 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=' + vidId[id] + '&key=AIzaSyC6rNYbiqYf7paJVuJbFGYK0absPmcVPSs',
+                success: function(data) {
+                    var srchItems = data.items;
+                    $.each(srchItems, function(index, item) {
+                        comments.push(item.snippet.topLevelComment.snippet.textOriginal);
+                        commentsId.push(item.id);
+                        commentAuthor.push(item.snippet.topLevelComment.snippet.authorDisplayName);
+                        likes.push(item.snippet.topLevelComment.snippet.likeCount);                
+                        publicationDate.push(item.snippet.topLevelComment.snippet.publishedAt);
+                        updateDate.push(item.snippet.topLevelComment.snippet.updatedAt);
+                    })
+                 }
+            });
+            }
+}
