@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Youtube Big Data</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no" charset="UTF-8">
+
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  		<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady">  </script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./css/style.css">
+	</head>
+
+	<script src="js/scripts.js" type="text/javascript"></script>
+	<body onload='keyWordsearch("Big Data",0);'>
+			<!-- Header -->
+			<div id="haut">
+
+					
+					<!-- Logo -->
+					<div id="logo">
+						<a href=""> <i class="fa fa-youtube " aria-hidden="true"></i>Big Data</a>
+					</div>
+					
+					<!-- Nav -->
+						<ul id="navigation">
+							<li id="tBigData"><a href="index.html" id="active" ><div class="textnav">Big data</div></a></li>
+							<li id="tAuteurs"><a href="#" onClick='autorSearch("Big Data");'><div class="textnav" >Auteurs</div></a></li>
+							<li id="tNombre"><a href="#"><div class="textnav">Nombre</div></a></li>
+							<li id="tLocaliser"><a href="#"><div class="textnav">Localiser</div></a></li>
+							<li id="tClassement"><a href="#"><div class="textnav">Classement</div></a></li>
+						</ul>
+				</div>
+			<!-- /Header -->
+				
+			<div id="page">
+				<div id="left">
+					<ul id="leftmenu">
+						<li id="lBigData" ><a href="#" onClick='keyWordsearch("Big Data",0);' ><i class="fa fa-user-circle" aria-hidden="true"></i><div class="textleft">Big data</div></a></li><br/>
+						<li id="lModelisation3D"><a href="#" onClick='keyWordsearch("Modelisation 3D",0);'><i class="fa fa-cube" aria-hidden="true"></i><div class="textleft">Modelisation 3D</div></a></li><br/>
+						<li id="lAnalysedimage"><a href="#" onClick='keyWordsearch("Analyse d image",0);'><i class="fa fa-file-image-o" aria-hidden="true"></i><div class="textleft">Analyse d'image</div></a></li><br/>
+						<li id="lMondesvirtuels"><a href="#" onClick='keyWordsearch("Mondes virtuels",0);'><i class="fa fa-video-camera" aria-hidden="true"></i><div class="textleft">Mondes virtuels</div></a></li><br/>
+						<li id="lLabyrinthe"><a href="#" onClick='keyWordsearch("Labyrinthe",0);'><i class="fa fa-random" aria-hidden="true"></i><div class="textleft">Labyrinthe</div></a></li><br/>
+					</ul>
+				</div>	
+			</div>
+
+			<div id="content">
+			</div>
+			
+	
+	</body>
+</html>
