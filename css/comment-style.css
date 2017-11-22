@@ -1,0 +1,64 @@
+body {
+	overflow: auto;
+}
+
+/*  comments thread */
+div.comment {
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	position: relative;
+	margin-bottom: 40px;
+
+}
+
+span.commentAuthor {
+	color: black ;
+	font-weight: bold ;
+}
+
+span.numberOfComments {
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	font-size: 5vh;
+	display: inline-block;
+	margin-bottom: 40px;
+}
+
+span.pubDate {
+	color: grey;
+}
+
+div.commentAvatar {
+	float: left;
+	width: 28px;
+}
+
+div.commentContent {
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	margin-left: 38px;
+}
+
+div#buttons {
+	margin-left: 40vw;
+}
+
+#botNextButton{
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	border-radius: 8px;
+	background-color: #c4302b;
+	padding: 15px 32px;
+	border: none;
+	text-align: center;
+	display: inline-block;
+	color:white;
+	margin-left:4px;
+}
+
+#botPrevButton{
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	border-radius: 8px;
+	background-color: #c4302b;
+	padding: 15px 32px;
+	border: none;
+	text-align: center;
+	display: inline-block;
+	color:white;
+}
