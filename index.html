@@ -3,6 +3,8 @@
 	<head>
 		<title>Youtube Big Data</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no" charset="UTF-8">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="-1">
 
 
 
@@ -13,7 +15,7 @@
 	</head>
 
 	<script src="js/scripts.js" type="text/javascript"></script>
-	<body onload='keyWordsearch("Big Data",0);'>
+	<body onload='start("Big Data",0);'>
 			<!-- Header -->
 			<div id="haut">
 
@@ -29,7 +31,7 @@
 							<li id="tAuteurs"><a href="#" onClick='autorSearch("Big Data");'><div class="textnav" >Auteurs</div></a></li>
 							<li id="tNombre"><a href="#"><div class="textnav">Nombre</div></a></li>
 							<li id="tLocaliser"><a href="#"><div class="textnav">Localiser</div></a></li>
-							<li id="tClassement"><a href="#"><div class="textnav">Classement</div></a></li>
+							<li id="tParamètres"><a href="#" onClick='getParameter(true);'><div class="textnav" >Paramètres</div></a></li>
 						</ul>
 				</div>
 			<!-- /Header -->

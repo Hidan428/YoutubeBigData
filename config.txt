@@ -1,0 +1,6 @@
+titre = 1
+nom = 1
+duree = 1
+nombre de vues = 1
+date de publication = 1
+description = 1
