@@ -1,6 +1,7 @@
 var nextPageToken = null;
 var previousPageToken = null;
 var currentPageToken;
+var firstCall = true;
 maxResults = 50;
 
 // Difference entre 2 dates en nombre de jours
@@ -10,8 +11,6 @@ function dayDiff(d1, d2) {
   return new Number(d1 - d2).toFixed(0);
 }
 
-compteur = 0;
-fini = 0;
 function getCommentThread(id, pageToken) {
 // Champs a recuperer, dans des tableaux
     var comments=[];
@@ -30,7 +29,6 @@ function getCommentThread(id, pageToken) {
             type: 'GET',
             url: 'https://www.googleapis.com/youtube/v3/commentThreads?pageToken=' + pageToken + '&part=snippet&videoId=' + id + '&maxResults=' + maxResults +'&order=relevance&key=AIzaSyC6rNYbiqYf7paJVuJbFGYK0absPmcVPSs',
             success: function(data) {
-                $('#content').empty();                             //Vider le contenu avant d'afficher les pages
                 totalResult = data.pageInfo.totalResults;
                 var srchItems = data.items;
                 if(data.nextPageToken){
@@ -39,12 +37,6 @@ function getCommentThread(id, pageToken) {
                 else{
                     nextPageToken = null;
                 }
-                if (data.prevPageToken){
-                    previousPageToken = data.prevPageToken;
-                }
-                else{
-                    previousPageToken = null;
-                } 
 
             // Recuperation des champs qui nous interessent
                 $.each(srchItems, function(index, item) {
@@ -74,7 +66,12 @@ function getCommentThread(id, pageToken) {
             var dateDiff;
 
             var isUpdated='';
-            $('#content').append('<span class="numberOfComments">' + totalResult + ' commentaire(s)</span>');
+            $('#botNextButton').remove();
+
+            if( firstCall == true) {
+                firstCall = false;
+                $('#content').append('<span class="numberOfComments">' + totalResult + ' commentaire(s)</span>');
+            }
 
             for (var i = 0 ; i < commentsId.length ; i++) {
                 chaine += '<div class=comment>';
@@ -97,20 +94,13 @@ function getCommentThread(id, pageToken) {
                 chaine += '</div></div>'
             }
 
-            chaine += '<div id="buttons">';
-            if(previousPageToken) {
-                console.log("previous");
-                chaine += '<button id="botPrevButton" type="button" onClick =\'getCommentThread("' + id + '",-1);\'>Previous</button>';
-            }
+        // Pas de previous page pour les commentaires (comportement normal)
             if(nextPageToken) {
-                console.log("next");
-                chaine += '<button id="botNextButton" type="button" onClick =\'getCommentThread("' + id + '",1);\'>Next</button>';
+                chaine += '<button id="botNextButton" type="button" onClick =\'getCommentThread("' + id + '",1);\'>Afficher plus de commentaires</button>';
             }
 
-            chaine += '</div>';
 
             $('#content').append(chaine);
-            /*getCommentThread(id);*/
         });
 
 }

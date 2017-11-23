@@ -36,10 +36,6 @@ div.commentContent {
 	margin-left: 38px;
 }
 
-div#buttons {
-	margin-left: 40vw;
-}
-
 #botNextButton{
 	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 	border-radius: 8px;
@@ -49,16 +45,5 @@ div#buttons {
 	text-align: center;
 	display: inline-block;
 	color:white;
-	margin-left:4px;
-}
-
-#botPrevButton{
-	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-	border-radius: 8px;
-	background-color: #c4302b;
-	padding: 15px 32px;
-	border: none;
-	text-align: center;
-	display: inline-block;
-	color:white;
+	margin-left: 40vw;
 }
