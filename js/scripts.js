@@ -9,7 +9,7 @@ var displayAutor;
 var displayCount;
 var displayPublish;
 var displayDescription;
-
+var response ;
 function subDateYear(chaine)
     {
         return chaine.substring(0,4);
@@ -426,7 +426,7 @@ function getParameter(display)
 {
     self.getParam = function(){
         return $.ajax({
-            url : "http://kevin.wilst.etu.perso.luminy.univ-amu.fr/config.txt",
+            url : "./config.txt",
             dataType: "text",
             success : function (data) {
             }
@@ -547,7 +547,7 @@ function saveParam()
 {
     self.getParam = function(){
         return $.ajax({
-            url : "http://kevin.wilst.etu.perso.luminy.univ-amu.fr/config.txt",
+            url : "./config.txt",
             dataType: "text",
             success : function (data) {
             }
@@ -599,7 +599,7 @@ function writeOnConfig(data)
     $.ajax({  
             type: 'POST',
             dataType: 'json',  
-            url: 'http://kevin.wilst.etu.perso.luminy.univ-amu.fr/write.php', 
+            url: './write.php', 
             data: {'donnee': data},
             success : function(data) {
             },
@@ -608,4 +608,83 @@ function writeOnConfig(data)
             }
     });
 
+}
+
+
+function setQuizz()
+{
+    self.getQuizz = function(){
+        return $.ajax({
+            url : "./quizz.txt",
+            dataType: "text",
+            success : function (data) {
+            }
+        });
+    }
+
+    self.getQuizz().then(function(data){
+        response = 0;
+        let question;
+        let reponse;
+        let chaine = '<div id="responses">' + response + ' bonnes reponses </div>';
+        let i = 0;
+        let j =1;
+        while(data.substring(i,i+1))
+        {
+            question = '';
+            chaine += '<div class = "questions">';
+            while(data.substring(i,i+1) != "?")
+            {
+                if (data.substring(i,i+1) != '\\')
+                {
+                    question += data.substring(i,i+1);
+                }
+                else{
+                    question += data.substring(i+1,i+2);
+                    i++;
+                }
+                i++;
+            }
+            chaine += '<div class ="question" >' + question  + '</div>';
+            i++;
+            while (data.substring(i,i+1) != ';')
+            {
+                reponse = '';
+                while(data.substring(i,i+1) != '%' && data.substring(i,i+1) != '!')
+                {
+                    reponse += data.substring(i,i+1);
+                    i++;
+                }
+                if(data.substring(i,i+1) == '%')
+                {
+                    chaine += '<div class="reponseF' + j + '"><input type="radio" class="' + j + '" onClick =\'countResponse(' + false + ',' + j + ');\'>' + reponse + '</div>';
+                }
+                else{
+                    chaine += '<div class="reponseV' + j + '"><input type="radio" class="' + j + '" onClick =\'countResponse(' + true + ',' + j + ');\'>' + reponse + '</div>';
+                }
+                i++;
+            }
+            chaine += '</div>';
+            j++;
+            i++;
+        }
+        $('#content').empty();
+        $('#content').append(chaine);
+    });
+}
+
+function countResponse(value , name)
+{
+    if(value == true)
+    {
+        response += 1;
+        $('#responses').text(response + ' bonnes reponses');
+    }
+    $('.reponseV' + name).css({'color' : 'green'});
+    $('.reponseF' + name).css({'color' : 'red'});
+    let check=document.getElementsByClassName(name);
+    for (let i = 0 ; i<check.length;i++)
+    {
+        check[i].disabled = true;
+    }
 }
