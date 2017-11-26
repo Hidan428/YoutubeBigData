@@ -256,3 +256,14 @@ body{
 	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 	font-weight: bold;
 }
+
+.quizz{
+    text-align: center;
+}
+.quizz a{
+	color: #c4302b;
+	text-decoration: none;
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    word-wrap: break-word;
+    font-size: 7vh;
+}

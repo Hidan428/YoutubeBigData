@@ -148,7 +148,6 @@ function keyWordsearch(recherche,pageToken){
                     self.getView(vidId[i]).then(function(data){
                             if(token == (maxResults*2))
                             {
-                                console.log(displayTitle);
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
@@ -214,13 +213,13 @@ function keyWordsearch(recherche,pageToken){
                                     chaine += '<button id="botNextButton" type="button" onClick =\'keyWordsearch("' + recherche + '",1);\'>Next</button>';
                                 }
                                 chaine += '</div>';
+                                $('#content').empty();
                                 $('#content').append(chaine);
                             }
                     });
                     self.getDuration(vidId[i]).then(function(data){
                             if(token == (maxResults*2))
                             {
-                                console.log(displayTitle);
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
@@ -286,6 +285,7 @@ function keyWordsearch(recherche,pageToken){
                                     chaine += '<button id="botNextButton" type="button" onClick =\'keyWordsearch("' + recherche + '",1);\'>Next</button>';
                                 }
                                 chaine += '</div>';
+                                $('#content').empty();
                                 $('#content').append(chaine);
                             }
                         });
@@ -610,8 +610,52 @@ function writeOnConfig(data)
 
 }
 
+function getAllQuizzName()
+{
+    self.getQuizz = function(){
+        return $.ajax({
+            url : "./quizz.txt",
+            dataType: "text",
+            success : function (data) {
+            }
+        });
+    }
 
-function setQuizz()
+    self.getQuizz().then(function(data){
+        let chaine = '';
+        let name;
+        let i=0;
+        let j=1;
+        while(data.substring(i,i+1))
+        {
+            name = '';
+            while(data.substring(i,i+1) != "&")
+            {
+                if (data.substring(i,i+1) != '\\')
+                {
+                    name += data.substring(i,i+1);
+                }
+                else{
+                    name += data.substring(i+1,i+2);
+                    i++;
+                }
+                i++;
+            }
+            i++;
+            chaine += '<div class="quizz"><a href="#" onClick=\'setQuizz(' + j + ');\'>' + name + '</a></div>';
+            while(data.substring(i,i+1) && data.substring(i,i+1) != '\r')
+            {
+                i++;
+            }
+            i++;
+            j++;
+        }
+        $('#content').empty();
+        $('#content').append(chaine);
+    });
+}
+
+function setQuizz(number)
 {
     self.getQuizz = function(){
         return $.ajax({
@@ -626,12 +670,34 @@ function setQuizz()
         response = 0;
         let question;
         let reponse;
-        let chaine = '<div id="responses">' + response + ' bonnes reponses </div>';
+        let chaine = '<div id="responses">' + response + ' bonne reponse </div>';
         let i = 0;
         let j =1;
-        while(data.substring(i,i+1))
+        let k = 1;
+
+        while(k != number)
+        {
+            if(data.substring(i,i+1) == '\n')
+            {
+                k++;
+            }
+            i++;
+        }
+        while(data.substring(i,i+1) != "&")
+            {
+                if (data.substring(i,i+1) != '\\')
+                {
+                }
+                else{
+                    i++;
+                }
+                i++;
+            }
+            i++;
+        while(data.substring(i,i+1) != '\r' && data.substring(i,i+1))
         {
             question = '';
+
             chaine += '<div class = "questions">';
             while(data.substring(i,i+1) != "?")
             {
@@ -652,7 +718,15 @@ function setQuizz()
                 reponse = '';
                 while(data.substring(i,i+1) != '%' && data.substring(i,i+1) != '!')
                 {
-                    reponse += data.substring(i,i+1);
+                    if (data.substring(i,i+1) != '\\')
+                    {
+                        reponse += data.substring(i,i+1);
+                    }
+                    else{
+                        reponse += data.substring(i+1,i+2);
+                        i++;
+                    }
+                    
                     i++;
                 }
                 if(data.substring(i,i+1) == '%')
@@ -678,7 +752,7 @@ function countResponse(value , name)
     if(value == true)
     {
         response += 1;
-        $('#responses').text(response + ' bonnes reponses');
+        $('#responses').text(response + ' bonne(s) reponse(s)');
     }
     $('.reponseV' + name).css({'color' : 'green'});
     $('.reponseF' + name).css({'color' : 'red'});
