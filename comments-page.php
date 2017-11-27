@@ -10,10 +10,12 @@
 		Commentaires de la vidéo
 	</title>
 
-	<body onload='getCommentThread("bEiPds-nL6E", 0);'>
+	<body onload='getCommentThread(<?php 
+		echo "\"".$_GET["videoId"]."\"" ?>,0);
+	'>
 		<div id="content">
 
 		</div>
-
+	
 	</body>
 </html>

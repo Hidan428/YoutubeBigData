@@ -22,6 +22,7 @@ function getCommentThread(id, pageToken) {
     var updateDate=[];
     var totalResult = 0;
 
+    console.log("dans fct");
 // Effectue la requete
     self.getVid = function(id, maxResults, pageToken) {
             return $.ajax({
@@ -92,6 +93,7 @@ function getCommentThread(id, pageToken) {
                 chaine += '<p>' + comments[i] + '</p>';
                 chaine += '<p> likes: ' + likes[i] + '</p>';     
                 chaine += '</div></div>'
+                console.log("je faisqqchose");
             }
 
         // Pas de previous page pour les commentaires (comportement normal)
@@ -101,6 +103,7 @@ function getCommentThread(id, pageToken) {
 
 
             $('#content').append(chaine);
+            console.log("fini");
         });
 
 }
@@ -118,4 +121,10 @@ function setToken(pageToken) {
     {
         currentPageToken = previousPageToken;
     }
+}
+
+function openCommentThread(id){
+    //window.open('file:///home/fabien/Bureau/bigdata/YoutubeBigData/comment-page.html');
+    console.log(id);
+    window.open('http://fabien.quang.etu.perso.luminy.univ-amu.fr/bigdata/comments-page.php?videoId='+id);
 }

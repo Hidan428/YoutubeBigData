@@ -199,6 +199,7 @@ body{
 	margin-bottom: 3px;
 	background-color: #F1F1F1;
 	height: 90px;
+	width: 100%;
 }
 
 .description{
@@ -235,5 +236,19 @@ body{
 	text-align: center;
 	display: inline-block;
 	color:white;
+}
+
+#commentButton {
+	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+	border-radius: 8px;
+	background-color: #999999;
+	padding: 15px 32px;
+	border: none;
+	text-align: center;
+	display: inline-block;
+	color:black;
+	float:right;
+	z-index: 10;
+	margin: 25px 0px;
 }
 
