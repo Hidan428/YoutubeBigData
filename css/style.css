@@ -241,9 +241,11 @@ body{
 .vidComment{
 	position:relative;
 }
+
 .commentButton {
 	position :absolute;
-	right :10px;
+	bottom :2px;
+	right:2px;
 	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 	border-radius: 8px;
 	background-color: #999999;

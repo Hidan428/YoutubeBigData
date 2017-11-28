@@ -10,6 +10,7 @@ var displayCount;
 var displayPublish;
 var displayDescription;
 var response ;
+
 function subDateYear(chaine)
     {
         return chaine.substring(0,4);
@@ -220,8 +221,8 @@ function keyWordsearch(recherche,pageToken){
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
-
-                                    chaine += '<button id="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
+                                    chaine += '<div class="vidComment">';
+                                    chaine += '<button class="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
                                     chaine += '<a class="lienVid" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
                                     if(displayDuration == true){
                                         chaine += '<span class="duree">';
@@ -271,7 +272,7 @@ function keyWordsearch(recherche,pageToken){
                                     {
                                         chaine += '<div class="description">' + vidDescription[i] + '</div>';
                                     }
-                                    chaine += '</div></a>';
+                                    chaine += '</div></a></div>';
                                 }
                                 chaine += '<div id="buttons">';
                                 if(previousPageToken)
