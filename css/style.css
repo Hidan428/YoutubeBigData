@@ -238,18 +238,20 @@ body{
 	color:white;
 }
 
-#commentButton {
+.vidComment{
+	position:relative;
+}
+.commentButton {
+	position :absolute;
+	right :10px;
 	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 	border-radius: 8px;
 	background-color: #999999;
 	padding: 15px 32px;
 	border: none;
 	text-align: center;
-	display: inline-block;
 	color:black;
-	float:right;
-	z-index: 10;
-	margin: 25px 0px;
+	z-index: 1;
 }
 
 .questions{

@@ -22,12 +22,7 @@ function subDateDay(chaine)
     {
         return chaine.substring(8,10);
     }
-function start(recherche,pageToken)
-{
-    getParameter(false);
-    keyWordsearch(recherche,pageToken);
-    console.log("ici");
-}
+
 // 
 function keyWordsearch(recherche,pageToken){
             $('#active2').attr('id','');
@@ -148,12 +143,12 @@ function keyWordsearch(recherche,pageToken){
                     self.getView(vidId[i]).then(function(data){
                             if(token == (maxResults*2))
                             {
-                                console.log(displayTitle);
+                                console.log("after");
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
-
-                                    chaine += '<button id="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
+                                    chaine += '<div class="vidComment">';
+                                    chaine += '<button class="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
                                     chaine += '<a class="lienVid" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
                                     if(displayDuration == true){
                                         chaine += '<span class="duree">';
@@ -203,7 +198,7 @@ function keyWordsearch(recherche,pageToken){
                                     {
                                         chaine += '<div class="description">' + vidDescription[i] + '</div>';
                                     }
-                                    chaine += '</div></a>';
+                                    chaine += '</div></a></div>';
                                 }
                                 chaine += '<div id="buttons">';
                                 if(previousPageToken)
@@ -440,7 +435,6 @@ function getParameter(display)
         var chaine = '<div id="titreParam"> Affichage </div> <div id = "params">';
         var value;
         var param;
-
         while(data.substring(i,i+1))
         {
             value = '';
@@ -472,6 +466,7 @@ function getParameter(display)
                 if(value == 1)
                 {
                     displayTitle = true;
+
                 }
                 else
                 {
@@ -534,8 +529,10 @@ function getParameter(display)
                 }
             }
         }
+        console.log("before");
         chaine += '</div>';
         chaine += '<button id="save" type="button" onClick =\'saveParam();\'>Enregistrer</button>';
+
         if(display == true)
         {
             $('#content').empty();
@@ -689,4 +686,12 @@ function countResponse(value , name)
     {
         check[i].disabled = true;
     }
+}
+
+function start(recherche,pageToken)
+{
+    getParameter(false);
+    keyWordsearch(recherche,pageToken);
+    //keyWordsearch(recherche,pageToken);
+    console.log("ici");
 }
