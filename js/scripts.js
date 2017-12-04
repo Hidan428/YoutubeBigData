@@ -729,7 +729,7 @@ function addVidCount(recherche)
     {
         let value = Number(getCookie(recherche));
         setCookie(recherche,value+1,10);
-        if(value>5)
+        if(value>5 && value%5 == 0)
         {
             wouldYouQuizz(recherche);
         }
@@ -739,17 +739,49 @@ function addVidCount(recherche)
 function wouldYouQuizz(recherche)
 {
     let chaine ="";
-    chaine += '<div id="popUp">test';
+    chaine += '<div id=page></div>'
+    chaine += '<div id="popUp">Voulez-vous faire un Quizz sur :' + recherche + '?<br>' ;
+    chaine += '<button id="Oui" type="button">Oui</button> <button id="Non" type="button">Non</button>';
     chaine += '</div>';
 
     $('#content').append(chaine);
     $('#popUp').css('display','block');
     $('#popUp').css('position','fixed');
-    $('#popUp').css('height','10vh');
+    $('#popUp').css('height','15vh');
     $('#popUp').css('width','30vw');
     $('#popUp').css('top','45vh');
     $('#popUp').css('left','35vw');
-    $('#popUp').css('z-index','1');
+    $('#popUp').css('z-index','3');
     $('#popUp').css('text-align','center');
-    console.log($('#popUp').css('display'));
+    $('#popUp').css('background-color','#c4302b');
+    $('#popUp').css('color','white');
+    $('#popUp').css('font-family' ,' Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif');
+    $('#popUp').css('border-radius' ,' 8px');
+    $('#popUp').css('border' ,' none');
+    $('#popUp').css('font-size', '4vh');
+    $('#Oui').css('font-family',' Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif');
+    $('#Oui').css('border-radius',' 8px');
+    $('#Oui').css('background-color',' #c4302b');
+    $('#Oui').css('padding',' 15px 32px');
+    $('#Oui').css('border',' none;')
+    $('#Oui').css('text-align',' center');
+    $('#Oui').css('display',' inline-block');
+    $('#Oui').css('color','white');
+    $('#Oui').css('font-size', '3vh');
+    $('#Non').css('font-family',' Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif');
+    $('#Non').css('border-radius',' 8px');
+    $('#Non').css('background-color',' #c4302b');
+    $('#Non').css('padding',' 15px 32px');
+    $('#Non').css('border',' none;')
+    $('#Non').css('text-align',' center');
+    $('#Non').css('display',' inline-block');
+    $('#Non').css('color','white');
+    $('#Non').css('font-size', '3vh');
+    $('#page').css('position','fixed');
+    $('#page').css('height','100vh');
+    $('#page').css('width','100vw');
+    $('#page').css('top','0vh');
+    $('#page').css('left','0vw');
+    $('#page').css('z-index','2');
+    $('#page').css('background-color','rgba(255,255,255, 0.5)');
 }

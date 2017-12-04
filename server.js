@@ -1,5 +1,5 @@
 const express = require('express');
-
+const session = require('express-session');
 const fs = require('fs');
 
 
@@ -9,10 +9,10 @@ class Server {
 		
 		this.server = express();
 
-
+		this.sess;
 
 		this.server.get('/', (req, res) => {
-
+			this.sess = req.session;
 			res.send(fs.readFileSync('./index.html', 'utf8'));
 
 		});
