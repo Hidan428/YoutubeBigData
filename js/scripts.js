@@ -11,6 +11,30 @@ var displayPublish;
 var displayDescription;
 var response ;
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 function subDateYear(chaine)
     {
         return chaine.substring(0,4);
@@ -150,7 +174,7 @@ function keyWordsearch(recherche,pageToken){
                                 {
                                     chaine += '<div class="vidComment">';
                                     chaine += '<button class="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
-                                    chaine += '<a class="lienVid" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
+                                    chaine += '<a class="lienVid" onclick=\'addVidCount("' + recherche + '");\' target="_blank" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
                                     if(displayDuration == true){
                                         chaine += '<span class="duree">';
                                         if(vidHeure[i]!=0)
@@ -223,7 +247,7 @@ function keyWordsearch(recherche,pageToken){
                                 {
                                     chaine += '<div class="vidComment">';
                                     chaine += '<button class="commentButton" type="button" onClick=\'openCommentThread("'+vidId[i]+'");\'> Voir les commentaires </button> ';
-                                    chaine += '<a class="lienVid" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
+                                    chaine += '<a class="lienVid" onclick=\'addVidCount("' + recherche + '");\' target="_blank" href ="https://www.youtube.com/watch?v=' + vidId[i] + '"><div class="vid"><div class="imgVid"><img id="thumb" class="vidImg" src="' + vidThumburl[i] + '" alt="No  Image Available." style="width:120px;height:90px">';
                                     if(displayDuration == true){
                                         chaine += '<span class="duree">';
                                         if(vidHeure[i]!=0)
@@ -693,6 +717,39 @@ function start(recherche,pageToken)
 {
     getParameter(false);
     keyWordsearch(recherche,pageToken);
-    //keyWordsearch(recherche,pageToken);
-    console.log("ici");
+}
+
+function addVidCount(recherche)
+{
+    if(getCookie(recherche)=="")
+    {
+        setCookie(recherche,1,10);
+    }
+    else
+    {
+        let value = Number(getCookie(recherche));
+        setCookie(recherche,value+1,10);
+        if(value>5)
+        {
+            wouldYouQuizz(recherche);
+        }
+    }
+}
+
+function wouldYouQuizz(recherche)
+{
+    let chaine ="";
+    chaine += '<div id="popUp">test';
+    chaine += '</div>';
+
+    $('#content').append(chaine);
+    $('#popUp').css('display','block');
+    $('#popUp').css('position','fixed');
+    $('#popUp').css('height','10vh');
+    $('#popUp').css('width','30vw');
+    $('#popUp').css('top','45vh');
+    $('#popUp').css('left','35vw');
+    $('#popUp').css('z-index','1');
+    $('#popUp').css('text-align','center');
+    console.log($('#popUp').css('display'));
 }
