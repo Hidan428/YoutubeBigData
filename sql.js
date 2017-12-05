@@ -34,11 +34,7 @@ class MySQL {
 	{
 		connection.query('SELECT * FROM login WHERE email = \'' + email + '\' AND password = \'' + password + '\'', function(err, results) {
 			if (err) throw err
-				console.log(results[0].email);
-			if(results[0].email)
-			{
-				cb("USER");
-			}
+			cb(results);
 		})
 	}
 }

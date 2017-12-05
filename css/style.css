@@ -246,10 +246,11 @@ body{
 	position :absolute;
 	bottom :2px;
 	right:2px;
+	height:5vh;
+	width : 10vw;
 	font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
 	border-radius: 8px;
 	background-color: #999999;
-	padding: 15px 32px;
 	border: none;
 	text-align: center;
 	color:black;

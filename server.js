@@ -1,20 +1,58 @@
 const express = require('express');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const fs = require('fs');
+const sql = require('./sql');
 
+let sess;
 
 class Server {
 
 	constructor() {
 		
 		this.server = express();
-
-		this.sess;
+		this.server.use(session({secret: 'ytb-big-data'}));
+		this.server.use(bodyParser.json());
+		this.server.use(bodyParser.urlencoded({extended: true}));
 
 		this.server.get('/', (req, res) => {
-			this.sess = req.session;
+			sess = req.session;
 			res.send(fs.readFileSync('./index.html', 'utf8'));
 
+		});
+
+		this.server.get('/loged', (req,res) => {
+			sess = req.session;
+			if(sess.email) {
+			    res.end('Already');
+			}
+			else {
+				res.end('done');
+			    
+			}
+		});
+		this.server.post('/login', (req, res) => {
+			sess = req.session;
+			sql.selectUser(req.body.email,req.body.pass,(data) =>{
+				if (typeof data[0] !== "undefined")
+				{
+					sess.email = req.body.email;
+					res.end('done');
+				}
+				else{
+					res.end('Erreur');
+				}
+			});
+		});
+
+		this.server.get('/logout',(req,res) => {
+			req.session.destroy(function(err) {
+			  if(err) {
+			    console.log(err);
+			  } else {
+			    res.end('done');
+			  }
+			});
 		});
 
 

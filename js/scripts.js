@@ -785,3 +785,41 @@ function wouldYouQuizz(recherche)
     $('#page').css('z-index','2');
     $('#page').css('background-color','rgba(255,255,255, 0.5)');
 }
+
+function logPage()
+{
+    let chaine ="";
+    $.get("./loged",(data) =>{
+        if(data=='done')          
+            {
+                chaine += '<input type="text" size="40" placeholder="Type your email" id="email"><br />';
+                chaine += '<input type="password" size="40" placeholder="Type your password" id="password"><br />';
+                chaine += '<input type="button" value="Submit" id="submit" onClick=\'loginPage()\'>';
+            }
+            else if (data == 'Already')
+            {
+                chaine += 'Already Connected';
+                chaine += '<input type="button" value="Logout" id="logout" onClick=\'logoutPage()\'>';
+            }
+            $('#content').empty()
+            $('#content').append(chaine)
+    });
+}
+
+function loginPage()
+{
+    let email = $('#email').val();
+    let pass = $('#password').val();
+    $.post("./login",{email:email,pass:pass},(data) =>{
+        logPage();
+    });
+}
+
+function logoutPage()
+{
+    $.get("./logout",(data) =>{
+        
+        logPage();
+
+    });
+}
