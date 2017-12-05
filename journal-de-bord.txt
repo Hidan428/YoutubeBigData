@@ -1,0 +1,33 @@
+-------------------------		Objectifs de la V2		-------------------------------------------
+resume travail :
+
+1- langage utilisé (BDD) ? comment s'y connecter ? quelles informations recupérer ?
+--> - BDD utilisée : mongodb 		OK
+	- Connexion en local ?
+	- on récupère (?) le nombre de vidéos vues d'une catégorie pour un utilisateur
+	  pour traitement plus tard (proposer un quizz après x vidéos vues)
+
+
+2- quel stockage pour un type de données ?
+--> - pour les quizz : mongoDB
+	- dans des format json
+
+installation de mongodb OK
+installation de nodeJS pour pouvoir  utiliser mongoDB dès le lancement du site
+
+a venir :
+	 passage a nodejs 
+------------------------------------------------------------------------------------------
+
+04/12/17
+	- Installation de MongoDB et nodejs
+	- Apres 5 videos visionnees, un popup apparait pour demander si l'utilisateur veut effectuer un quizz
+	- Debut de l'intégration de MondoDB au site.
+
+05/12/17
+	- Travail sur les session (logins/mdp) avec nodejs
+		--> login mot de passes OK
+		--> stockage dans une base de données SQL
+	- Connexion a la base de donnees mongodb
+		--> penser à lancer le service mongodb avant d'effectuer les manips
+		--> problemes de connexions a la base de donnees (problème de requetes asynchrones)
