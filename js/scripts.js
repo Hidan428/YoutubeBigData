@@ -168,7 +168,6 @@ function keyWordsearch(recherche,pageToken){
                     self.getView(vidId[i]).then(function(data){
                             if(token == (maxResults*2))
                             {
-                                console.log("after");
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
@@ -241,7 +240,6 @@ function keyWordsearch(recherche,pageToken){
                     self.getDuration(vidId[i]).then(function(data){
                             if(token == (maxResults*2))
                             {
-                                console.log(displayTitle);
                                 var chaine = '<div id="nbVid"> Environ ' + totalResult + ' résultats</div>';
                                 for (var i = 0 ; i < vidId.length ; i++)
                                 {
@@ -455,7 +453,6 @@ function getParameter(display)
         });
     }
     self.getParam().then(function(data){
-        
         var i = 0;
         var chaine = '<div id="titreParam"> Affichage </div> <div id = "params">';
         var value;
@@ -554,7 +551,7 @@ function getParameter(display)
                 }
             }
         }
-        console.log("before");
+
         chaine += '</div>';
         chaine += '<button id="save" type="button" onClick =\'saveParam();\'>Enregistrer</button>';
 
@@ -620,18 +617,9 @@ function saveParam()
 
 function writeOnConfig(data)
 {
-    $.ajax({  
-            type: 'POST',
-            dataType: 'json',  
-            url: './write.php', 
-            data: {'donnee': data},
-            success : function(data) {
-            },
-            error : function(data){
-                window.location.reload(true);
-            }
+    $.post("./configwrite",{data:data},(data) =>{
+        window.location.reload(true);
     });
-
 }
 
 

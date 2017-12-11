@@ -55,6 +55,13 @@ class Server {
 			});
 		});
 
+		this.server.post('/configwrite', function(req, res) {
+		    var body = req.body.data;
+		    var filePath = './model/config.txt';
+		    fs.writeFile(filePath, body, function() {
+		    	res.end();
+		    });
+		});
 
 		this.server.use('/js', express.static('./js'));
 
