@@ -17,7 +17,7 @@ class Server {
 
 		this.server.get('/', (req, res) => {
 			sess = req.session;
-			res.send(fs.readFileSync('./index.html', 'utf8'));
+			res.send(fs.readFileSync('./view/index.html', 'utf8'));
 
 		});
 
@@ -58,11 +58,11 @@ class Server {
 
 		this.server.use('/js', express.static('./js'));
 
-		this.server.use('/config.txt', express.static('./config.txt'));
+		this.server.use('/config.txt', express.static('./model/config.txt'));
 
-		this.server.use('/write.php', express.static('./write.php'));
+		this.server.use('/write.php', express.static('./model/write.php'));
 
-		this.server.use('/quizz.txt', express.static('./quizz.txt'));
+		this.server.use('/quizz.txt', express.static('./model/quizz.txt'));
 
 		this.server.use('/css', express.static('./css'));
 

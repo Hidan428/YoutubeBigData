@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$file = 'config.txt';
+$file = './config.txt';
 echo 'lol';
 // Ouvre un fichier pour lire un contenu existant
 // Ajoute une personne
